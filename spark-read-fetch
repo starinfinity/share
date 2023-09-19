@@ -1,0 +1,34 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import lit
+import gzip
+
+# Initialize Spark session with Hive support
+spark = SparkSession.builder \
+    .appName("Hive Query and File Transformation") \
+    .enableHiveSupport() \
+    .getOrCreate()
+
+# Extract values from the file
+values_to_query = []
+
+with gzip.open('input.gz', 'rt') as f:  # rt mode to read as text
+    for line in f:
+        if line[41:44] == "100":
+            values_to_query.append(line[65:77])
+
+# Run the Hive query
+query = f"SELECT * FROM test_hive_table WHERE col3 IN ({','.join(map(str, values_to_query))})"
+hive_results = spark.sql(query)
+
+# Map the results back to the file and generate the output
+with gzip.open('input.gz', 'rt') as f, gzip.open('output.gz', 'wt') as out_f:
+    for line in f:
+        if line[41:44] == "100":
+            value = line[65:77]
+            result_row = hive_results.filter(hive_results.col3 == value).collect()
+            if result_row:
+                row = result_row[0]
+                line = line[:100] + row.col5 + row.col6 + row.col7 + row.col8 + line[146:]
+        out_f.write(line)
+
+spark.stop()

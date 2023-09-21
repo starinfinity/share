@@ -1,0 +1,42 @@
+    Demographic Features:
+        Age: Older age is a risk factor for Type 2 diabetes.
+        Gender: Gender can influence the risk of developing diabetes.
+        Race/ethnicity: Some racial and ethnic groups have a higher risk of diabetes.
+
+    Physiological Measurements:
+        Blood Glucose Levels:
+            Fasting blood glucose: Elevated levels can indicate diabetes or prediabetes.
+            Postprandial blood glucose: Blood glucose levels 2 hours after a meal.
+            Hemoglobin A1c (HbA1c): Provides an average blood sugar level over the past 2 to 3 months.
+        Blood Pressure: Hypertension is a risk factor for diabetes.
+        Body Mass Index (BMI): Overweight and obesity increase the risk of diabetes.
+        Waist Circumference: Central obesity is a risk factor for metabolic syndrome and diabetes.
+
+    Medical History:
+        Family history of diabetes: A family history increases one's risk.
+        History of gestational diabetes or giving birth to a baby weighing >9 lbs.
+        Polycystic Ovary Syndrome (PCOS): Women with PCOS are at an increased risk.
+        Previous diagnosis of impaired fasting glucose or impaired glucose tolerance.
+
+    Lifestyle Factors:
+        Physical activity: Sedentary lifestyle increases diabetes risk.
+        Diet: High-calorie, high-sugar, and high-fat diets can contribute to obesity and insulin resistance.
+        Smoking: It increases the risk of various diseases, including diabetes.
+        Alcohol consumption: Both excessive and too little alcohol can have implications.
+
+    Laboratory Tests:
+        Triglyceride levels: Elevated levels are associated with insulin resistance.
+        HDL cholesterol level: Low levels are associated with increased diabetes risk.
+        Serum insulin levels: Can be used to determine insulin resistance.
+
+    Other Health Conditions:
+        Presence of autoimmune diseases.
+        Previous cardiovascular diseases.
+        Certain conditions like acanthosis nigricans.
+
+    Medications:
+        Use of certain medicines such as glucocorticoids, atypical antipsychotics, and certain antihypertensive drugs can influence glucose metabolism.
+
+    Miscellaneous Features:
+        Stress: Chronic stress can affect blood sugar levels.
+        Sleep patterns: Both lack of sleep and excessive sleep can be risk factors.

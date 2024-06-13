@@ -1,0 +1,108 @@
+### Technical Flow Document for Pizza Order Processing System (Local Setup)
+
+#### Overview
+
+This document outlines the steps to create a pizza order processing system using Flask for the web interface and a local installation of Apache Kafka for messaging. The application processes pizza orders through several stages: adding sauce, cheese, meats, and veggies.
+
+#### Prerequisites
+
+1. **Python 3.x** installed.
+2. **Flask** library.
+3. **confluent_kafka** library for Kafka integration.
+4. **configparser** library for configuration management.
+5. **UUID** library for unique identifier generation.
+6. **Random** library for random selection.
+7. **Apache Kafka** installed locally.
+
+#### Configuration
+
+1. **Install Apache Kafka Locally**
+   - Download and install Apache Kafka from the [official website](https://kafka.apache.org/downloads).
+   - Start the ZooKeeper server:
+     ```sh
+     bin/zookeeper-server-start.sh config/zookeeper.properties
+     ```
+   - Start the Kafka server:
+     ```sh
+     bin/kafka-server-start.sh config/server.properties
+     ```
+
+2. **Update Configuration File**
+   - Ensure your `config.properties` file has the correct local Kafka configuration.
+
+#### Project Structure
+
+1. `app.py`
+2. `config.properties`
+3. `main_sauce.py`
+4. `main_cheese.py`
+5. `main_meats.py`
+6. `main_veggies.py`
+7. `pizza.py`
+8. `pizza_service.py`
+9. `report_service.py`
+
+#### Flow Diagram
+
+Below is a textual representation of the flow diagram for better clarity:
+
+1. **Pizza Order Creation**:
+   - User sends a POST request to `/order/<count>` to create an order.
+   - `pizza_service.py` creates a `PizzaOrder` with multiple `Pizza` objects.
+   - Each pizza is sent to the 'pizza' Kafka topic.
+
+2. **Sauce Addition**:
+   - `main_sauce.py` consumes messages from the 'pizza' topic.
+   - Adds a random sauce to each pizza.
+   - Publishes the updated pizza to the 'pizza-with-sauce' Kafka topic.
+
+3. **Cheese Addition**:
+   - `main_cheese.py` consumes messages from the 'pizza-with-sauce' topic.
+   - Adds a random cheese to each pizza.
+   - Publishes the updated pizza to the 'pizza-with-cheese' Kafka topic.
+
+4. **Meats Addition**:
+   - `main_meats.py` consumes messages from the 'pizza-with-cheese' topic.
+   - Adds random meats to each pizza.
+   - Publishes the updated pizza to the 'pizza-with-meats' Kafka topic.
+
+5. **Veggies Addition**:
+   - `main_veggies.py` consumes messages from the 'pizza-with-meats' topic.
+   - Adds random veggies to each pizza.
+   - Publishes the updated pizza to the 'pizza-with-veggies' Kafka topic.
+
+6. **Order Retrieval**:
+   - User sends a GET request to `/order/<order_id>` to retrieve the order.
+   - `pizza_service.py` retrieves the order details from an internal data structure.
+
+7. **Report Generation**:
+   - User sends a GET request to `/report`.
+   - `report_service.py` generates a report based on the orders processed.
+
+### Flow Diagram
+
+![Pizza Order Processing Flow Diagram](https://i.imgur.com/j6Uq3Hv.png)
+
+#### Steps to Implement
+
+1. **Setup Kafka Locally**:
+   - Download and install Kafka.
+   - Start ZooKeeper and Kafka server.
+
+2. **Create Configuration File**:
+   - Define Kafka connection details in `config.properties`.
+
+3. **Build Flask Application**:
+   - Implement endpoints for order creation and retrieval in `app.py`.
+
+4. **Develop Pizza Service**:
+   - Handle order creation and Kafka message production in `pizza_service.py`.
+
+5. **Implement Processing Stages**:
+   - Create separate scripts for each stage: `main_sauce.py`, `main_cheese.py`, `main_meats.py`, `main_veggies.py`.
+   - Consume messages from previous stage topics and publish to the next stage.
+
+6. **Generate Reports**:
+   - Implement report generation logic in `report_service.py`.
+
+By following this flow, you can create a pizza order processing system with multiple stages of processing, utilizing Kafka for messaging and Flask for the web interface.

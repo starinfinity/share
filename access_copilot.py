@@ -2,12 +2,12 @@ import os
 import logging
 import time
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.firefox.service import Service
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 
@@ -28,7 +28,7 @@ def setup_logger():
             # Log to console
             logging.StreamHandler(),
             # Log to file with timestamp
-            logging.FileHandler(f'logs/github_copilot_scraper_{int(time.time())}.log')
+            logging.FileHandler(f'logs/github_copilot_edge_scraper_{int(time.time())}.log')
         ]
     )
     return logging.getLogger(__name__)
@@ -48,26 +48,26 @@ class GitHubCopilotScraper:
 
     def setup_selenium_driver(self):
         """
-        Set up Selenium WebDriver using Firefox
+        Set up Selenium WebDriver using Microsoft Edge
         """
         try:
-            self.logger.info("Setting up Firefox WebDriver...")
+            self.logger.info("Setting up Microsoft Edge WebDriver...")
 
-            # Firefox options 
-            firefox_options = Options()
+            # Edge options
+            edge_options = Options()
             # Uncomment to run in background
-            # firefox_options.add_argument("--headless")  
+            # edge_options.add_argument("--headless")
 
-            # Setup Firefox WebDriver
-            self.driver = webdriver.Firefox(
-                service=Service(GeckoDriverManager().install()),
-                options=firefox_options
+            # Setup Edge WebDriver
+            self.driver = webdriver.Edge(
+                service=Service(EdgeChromiumDriverManager().install()),
+                options=edge_options
             )
 
             # Set implicit wait to help with element detection
             self.driver.implicitly_wait(10)
 
-            self.logger.info("Firefox WebDriver setup complete")
+            self.logger.info("Microsoft Edge WebDriver setup complete")
         except Exception as e:
             self.logger.error(f"Failed to setup WebDriver: {e}")
             raise
@@ -134,7 +134,7 @@ class GitHubCopilotScraper:
             self.logger.info("Attempting to access Copilot Chat...")
 
             # Navigate to Copilot Chat
-            self.driver.get("https://github.com/copilot")
+            self.driver.get("https://github.com/github-copilot/chat")
 
             self.logger.info("Navigated to Copilot Chat page")
 
@@ -204,11 +204,9 @@ class GitHubCopilotScraper:
 
 def main():
     # Get credentials from environment variables
-    # USERNAME = os.environ.get('GITHUB_USERNAME')
-    # PASSWORD = os.environ.get('GITHUB_PASSWORD')
-
     USERNAME = "abc"
     PASSWORD = "abc"
+
     # Setup logger for main function
     logger = logging.getLogger(__name__)
 

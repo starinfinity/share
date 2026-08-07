@@ -1,0 +1,84 @@
+script_sections = {
+        "01_intro": [
+            ("Hello everyone, and welcome to our quick starter guide for the JET AI Agent.", 0.2),
+            ("Let's start with How to get access to JET Agent.", 0.2),
+            ("Go to secure and raise access A.Z.U. JET AGENT USER group.", 0.3),
+            ("In this walkthrough, I’ll show how to generate, search, update, enrich, review, and submit test members using simple prompts.", 0.2),
+            ("We’ll cover member creation, member search, member enrichment with PCP and COB details, and update scenarios including demographic updates, full voids, partial voids, and bulk members creation with different scenarios.", 0.3),
+            ("Let’s get started.", 0.5)
+        ],
+        "02_workspace_overview": [
+            ("This is the main workspace.", 0.2),
+            ("On the left, we have History, where recent generated work appears after you run prompts, and Saved Prompts, which provide starter prompts for new and existing users.", 0.2),
+            ("At the top, we select the target environment.", 0.3),
+            ("The center workspace is where prompts, generated members, search results, the member editor, crosswalk profile workflow, and submission results appear.", 0.3),
+            ("The key point is that the agent stages data for review before anything is submitted.", 0.5)
+        ],
+        "03_basic_create_and_update": [
+            ("I’ll start with a basic create request:", 0.3),
+            ("Create one test member using group ID FLMMA.", 0.4),
+            ("Once submitted, the agent routes the request through the backend workflow and returns a proposed member.", 0.3),
+            ("The member appears in the Generated Members review card.", 0.2),
+            ("From here, I can select the member, open the full form, or continue prompting in the same session.", 0.4),
+            ("Now I’ll make a follow-up update in the same session:", 0.3),
+            ("Update this member’s subgroup ID to FL01.", 0.4),
+            ("The agent uses the current session context to understand that I’m referring to the generated member.", 0.3),
+            ("The review card updates with the staged change, and the payload prepared for Save to Facets is updated as well.", 0.3),
+            ("If I open the form, I can inspect the updated values and save any additional edits back into the staged payload.", 0.5)
+        ],
+        "04_member_enrichment": [
+            ("Next, I’ll enrich the same member:", 0.3),
+            ("Add PCP details for this member.", 0.4),
+            ("The agent keeps the current member context, applies the enrichment, and updates the staged member.", 0.3),
+            ("I can open the form to inspect the PCP-related fields, then return to the review card when I’m done.", 0.4),
+            ("Now I’ll add COB details:", 0.3),
+            ("Add COB details for this member.", 0.4),
+            ("The agent recognizes this as another update to the same staged member and applies the COB structure.", 0.3),
+            ("At this point, the member has gone through multiple changes in the same workspace session: create, update, PCP enrichment, and COB enrichment.", 0.4),
+            ("Once the member looks correct, I select the row and click Save to Facets.", 0.3),
+            ("The results modal shows the member-level outcome, including status and upstream message.", 0.3),
+            ("If multiple members are saved together, each member gets its own result row, making it easier to identify exactly what succeeded or failed.", 0.5)
+        ],
+        "05_search_and_demographic_update": [
+            ("Next, I’ll demonstrate the search flow.", 0.3),
+            ("I can either enter a search prompt, such as:", 0.2),
+            ("Search for subscriber ID 123456789.", 0.4),
+            ("Or I can click the search icon below the prompt box, enter the relevant subscriber ID, click Search, and then choose the member that appears.", 0.3),
+            ("The agent routes this as a search operation and returns matching member context.", 0.3),
+            ("From the search result, I can choose the member I want to work with.", 0.2),
+            ("Once selected, that member becomes the active context for update scenarios.", 0.4),
+            ("Now that we have an existing searched member, I can update the selected member’s details.", 0.3),
+            ("I’ll start by updating the member’s demographic details.", 0.2),
+            ("I’ll enter:", 0.2),
+            ("Update the demographic details for this member.", 0.4),
+            ("The agent understands this as an update request against the currently selected member.", 0.2),
+            ("It uses the searched member as the source record, generates proposed demographic changes, and stages those changes for review instead of immediately submitting them.", 0.3),
+            ("The update preview shows the current values alongside the proposed values, so I can quickly confirm what changed.", 0.3),
+            ("If the proposed update looks correct, I can keep it staged. If I need to adjust anything, I can open the member form, make the edits manually, and save those changes back into the prepared payload.", 0.5)
+        ],
+        "06_full_and_partial_voids": [
+            ("Next, I can request a full void update.", 0.3),
+            ("I’ll enter:", 0.2),
+            ("Apply a full void for this member.", 0.4),
+            ("The agent applies the appropriate update to the searched member and stages the result for review.", 0.3),
+            ("I can inspect the changes in the review card or open the form before deciding whether to submit.", 0.4),
+            ("Next, I’ll demonstrate a partial void:", 0.3),
+            ("Partially void this member.", 0.4),
+            ("Because the searched member is already in context, the agent treats this as an update scenario, applies the targeted change, and stages the updated payload.", 0.3),
+            ("As you can see, the agent understands that a partial void may require multiple eligibility events.", 0.2),
+            ("The user can review those generated events and add or adjust eligibility rows as needed before saving.", 0.3),
+            ("Again, nothing is submitted automatically. The user can review, edit, and confirm before saving.", 0.5)
+        ],
+        "07_crosswalk_and_outro": [
+            ("Lastly, let me demonstrate one more feature: the crosswalk profile workflow.", 0.3),
+            ("The workspace also supports attaching a crosswalk workbook.", 0.3),
+            ("I can attach a crosswalk workbook, review the decoded profile, choose the sheet, set the member count, and generate members from selected combinations.", 0.4),
+            ("Alternatively, you can provide a prompt to the agent to check the database for a specific state and identify the available groups and Plan Class IDs.", 0.3),
+            ("Based on the selected combination, the agent can automatically generate the required test data from a single prompt.", 0.2),
+            ("The agent is capable of handling this end-to-end process.", 0.3),
+            ("Those generated members flow into the same review card and submission process.", 0.4),
+            ("That’s the core workflow.", 0.3),
+            ("You can generate new members, search existing members, continue updating the active member in the same session, enrich with PCP or COB data, create full or partial void scenarios, and submit selected records only when ready.", 0.4),
+            ("The JET AI Agent is designed to speed up test data setup while keeping the workflow controlled, reviewable, and traceable.", 0.0)
+        ]
+    }
